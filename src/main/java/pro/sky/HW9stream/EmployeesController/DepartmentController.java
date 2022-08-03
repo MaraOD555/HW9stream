@@ -1,0 +1,34 @@
+package pro.sky.HW9stream.EmployeesController;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import pro.sky.HW9stream.EmployeesService.DepartmentService;
+
+@RestController
+@RequestMapping("/departments")
+public class DepartmentController {
+    private static DepartmentService departmentService;
+
+    public DepartmentController(DepartmentService departmentService) {
+        this.departmentService = departmentService;
+    }
+    @GetMapping("/all/by-department")
+    public String getEmployeesByDepartment(){
+        return departmentService.getEmployeesByDepartment();
+    }
+
+    @GetMapping("/all")
+    public String getEmployeesInDepartment(@RequestParam ("departmentId") String departmentId){
+        return departmentService.getEmployeesInDepartment(departmentId);
+    }
+    @GetMapping("/min-salary")
+    public String lowestSalaryInDepartment(@RequestParam ("departmentId") String departmentId){
+        return departmentService.lowestSalaryInDepartment(departmentId);
+    }
+    @GetMapping("/max-salary")
+    public String highestSalaryInDepartment(@RequestParam ("departmentId") String departmentId){
+        return departmentService.highestSalaryInDepartment(departmentId);
+    }
+}
