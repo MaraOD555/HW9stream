@@ -14,12 +14,12 @@ public class DepartmentController {
     public DepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
     }
-    @GetMapping("/all/by-department")
+    @GetMapping("/all")
     public String getEmployeesByDepartment(){
         return departmentService.getEmployeesByDepartment();
     }
 
-    @GetMapping("/all")
+    @GetMapping(value = "/all", params = "departmentId")
     public String getEmployeesInDepartment(@RequestParam ("departmentId") String departmentId){
         return departmentService.getEmployeesInDepartment(departmentId);
     }
